@@ -14,6 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   background: url('her.JPG') no-repeat center center/cover;
+  background-size: cover;
   color: white;
   text-align: center;
   overflow: hidden;
@@ -102,6 +103,8 @@ button {
 
 <script>
 window.onload = function() {
+
+  // Make first button work reliably
   const nextBtn = document.getElementById("nextBtn");
   nextBtn.addEventListener("click", valentine);
 
@@ -165,6 +168,7 @@ window.onload = function() {
     `;
     card.style.animation = 'pop 0.8s ease';
 
+    // Hearts animation
     const heartInterval = setInterval(() => {
       const heart = document.createElement('div');
       heart.classList.add('heart');
@@ -177,6 +181,7 @@ window.onload = function() {
 
     setTimeout(() => clearInterval(heartInterval), 10000);
   }
+
 };
 </script>
 
