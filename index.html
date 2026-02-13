@@ -1,189 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For Kaynat 💚</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url('her.JPG') no-repeat center center/cover;
-  background-size: cover;
-  color: white;
-  text-align: center;
-  overflow: hidden;
-}
-
-.overlay {
-  position: absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 25px;
-  max-width: 400px;
-  width: 90%;
-  animation: pop 0.8s ease;
-}
-
-@keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-h1 { font-size: 28px; margin-bottom: 15px; color:#ffccd5; }
-h2 { font-size: 24px; margin: 15px 0; color:#ffedf0; }
-p { font-size: 16px; margin-bottom: 20px; }
-
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 20px;
-  margin: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.option { background: #ffccd5; color: #333; }
-.yes-btn { background: #ff4d6d; color: white; }
-.no-btn { background: #ffe5ec; color: #333; position: relative; }
-
-/* Hearts animation */
-.heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  transform: rotate(-45deg);
-  animation: float 3s linear forwards;
-}
-.heart:before,
-.heart:after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-}
-.heart:before { top: -10px; left: 0; }
-.heart:after { left: 10px; top: 0; }
-
-@keyframes float {
-  0% { transform: translateY(0) rotate(-45deg); opacity:1; }
-  100% { transform: translateY(-400px) translateX(50px) rotate(-45deg); opacity:0; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Kaynat 💖</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom, #ffe6f2, #fff);
+      color: #d63384;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    img {
+      width: 150px;
+      border-radius: 50%;
+      margin: 20px 0;
+    }
+    select, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+      border: 2px solid #d63384;
+      font-size: 1em;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #a83366;
+    }
+    #valentineBtn {
+      padding: 15px 25px;
+      font-size: 1.2em;
+      border-radius: 12px;
+      border: 2px solid #d63384;
+      background-color: #ffe6f2;
+      color: #d63384;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+  </style>
 </head>
 <body>
+  <h1>💖 Hello Kaynat 💖</h1>
+  <img src="her.JPG" alt="Kaynat">
 
-<div class="overlay">
-  <div class="card" id="card">
-    <h1>Hey Kaynat 💖</h1>
-    <p>Even when you say you’re not special… my heart knows you’re the spark that lights up everything around me.</p>
-    <button id="nextBtn">Next 😌</button>
-  </div>
-</div>
+  <p>Choose what you want to eat 🍕🍰:</p>
+  <select id="food">
+    <option value="Pizza">Pizza</option>
+    <option value="Sushi">Sushi</option>
+    <option value="Ice Cream">Ice Cream</option>
+    <option value="Chocolate Cake">Chocolate Cake</option>
+  </select>
 
-<script>
-window.onload = function() {
+  <p>Choose your drink 🍵:</p>
+  <select id="drink">
+    <option value="Water">Water</option>
+    <option value="Matcha Latte">Matcha Latte</option>
+    <option value="Juice">Juice</option>
+    <option value="Coffee">Coffee</option>
+  </select>
 
-  // Make first button work reliably
-  const nextBtn = document.getElementById("nextBtn");
-  nextBtn.addEventListener("click", valentine);
+  <p>Where do you want to go 🌸:</p>
+  <select id="place">
+    <option value="Park">Park</option>
+    <option value="Beach">Beach</option>
+    <option value="Cafe">Cafe</option>
+    <option value="Movie">Movie</option>
+  </select>
 
-  function valentine() {
-    const card = document.getElementById('card');
-    card.innerHTML = `
-      <h1>Will you be my Valentine? 💘</h1>
-      <button class="yes-btn" onclick="food()">Yes 😍</button>
-      <button class="no-btn" id="noBtn">No 😅</button>
-    `;
-    const noBtn = document.getElementById('noBtn');
-    noBtn.addEventListener('mouseenter', () => {
-      const x = Math.random() * 120 - 60;
-      const y = Math.random() * 60 - 30;
-      noBtn.style.transform = \`translate(\${x}px, \${y}px)\`;
+  <br>
+  <button onclick="showLove()">See Your Perfect Date 💕</button>
+
+  <div class="result" id="result"></div>
+
+  <p>Will you be my Valentine? 💌</p>
+  <button id="valentineBtn">💖 Be My Valentine 💖</button>
+
+  <script>
+    function showLove() {
+      const food = document.getElementById('food').value;
+      const drink = document.getElementById('drink').value;
+      const place = document.getElementById('place').value;
+
+      const message = `My love Kaynat, I will take you to the <b>${place}</b>, we'll enjoy <b>${food}</b> and sip <b>${drink}</b> together 😘. Can't wait to see your smile! 💖`; 
+      document.getElementById('result').innerHTML = message;
+    }
+
+    // Make Valentine button unclickable / move away
+    const btn = document.getElementById('valentineBtn');
+    btn.addEventListener('mouseenter', () => {
+      const x = Math.random() * 80;
+      const y = Math.random() * 80;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
     });
-  }
-
-  window.food = function() {
-    const card = document.getElementById("card");
-    card.innerHTML = `
-      <h1>What are we eating? 🍕</h1>
-      <button class="option" onclick="drink()">Pizza 🍕</button>
-      <button class="option" onclick="drink()">Burgers 🍔</button>
-      <button class="option" onclick="drink()">Desi Khana 🍛</button>
-      <button class="option" onclick="drink()">Whatever you want 😏</button>
-    `;
-    card.style.animation = 'pop 0.8s ease';
-  }
-
-  window.drink = function() {
-    const card = document.getElementById("card");
-    card.innerHTML = `
-      <h1>What are you drinking? ☕</h1>
-      <button class="option" onclick="place()">Matcha 💚</button>
-      <button class="option" onclick="place()">Coffee ☕</button>
-      <button class="option" onclick="place()">Cold Drink 🧋</button>
-      <button class="option" onclick="place()">Whatever you’re holding 😅</button>
-    `;
-    card.style.animation = 'pop 0.8s ease';
-  }
-
-  window.place = function() {
-    const card = document.getElementById("card");
-    card.innerHTML = `
-      <h1>Where are we going? ✈️</h1>
-      <button class="option" onclick="final()">Beach 🌊</button>
-      <button class="option" onclick="final()">Mountains ⛰️</button>
-      <button class="option" onclick="final()">Late Night Drive 🚗</button>
-      <button class="option" onclick="final()">Anywhere with you ❤️</button>
-    `;
-    card.style.animation = 'pop 0.8s ease';
-  }
-
-  window.final = function() {
-    const card = document.getElementById("card");
-    card.innerHTML = `
-      <h1>You chose perfectly 💘</h1>
-      <p>As long as it’s you, every moment is magic, every sip tastes sweeter, and every place feels like home.</p>
-      <h2>Love you to the moon and back 🌙💖</h2>
-    `;
-    card.style.animation = 'pop 0.8s ease';
-
-    // Hearts animation
-    const heartInterval = setInterval(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
-      heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
-    }, 200);
-
-    setTimeout(() => clearInterval(heartInterval), 10000);
-  }
-
-};
-</script>
-
+  </script>
 </body>
 </html>
