@@ -6,108 +6,99 @@
 <title>Kaynat 💖 Mini App</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
-    background: #fff0f5;
-  }
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
 
-  .page {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 0.8s ease;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .page.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.8s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.page.active {
+  opacity: 1;
+  pointer-events: all;
+}
 
-  /* Page 1: Romantic intro + Valentine */
-  #page1 {
-    background: url('her.JPG') center/cover no-repeat;
-    color: #fff;
-    text-align: center;
-  }
-  #page1::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-  #page1-content {
-    position: relative;
-    z-index: 2;
-    font-family: 'Pacifico', cursive;
-    font-size: 2em;
-    padding: 20px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-  }
+/* Page 1: Romantic intro + Valentine */
+#page1 {
+  background: url('her.JPG') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+}
+#page1::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+#page1-content {
+  position: relative;
+  z-index: 2;
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  padding: 20px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
 
-  button {
-    padding: 15px 30px;
-    margin: 15px;
-    font-size: 1.1em;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
+button {
+  padding: 15px 30px;
+  margin: 15px;
+  font-size: 1.1em;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
-  .valentine-btn {
-    background: #ff66b3;
-    color: #fff;
-    position: relative;
-  }
+.valentine-btn {
+  background: #ff66b3;
+  color: #fff;
+  position: relative;
+}
+.question-btn {
+  background: #ff99cc;
+  color: #fff;
+}
+select {
+  padding: 12px 20px;
+  margin: 10px;
+  font-size: 1em;
+  border-radius: 12px;
+  border: 2px solid #d63384;
+}
 
-  /* Page 2: Questions */
-  #page2 {
-    background: linear-gradient(to bottom, #ffe6f2, #fff0f5);
-    color: #d63384;
-    font-weight: 600;
-    font-size: 1.2em;
-  }
-  select {
-    padding: 12px 20px;
-    margin: 10px;
-    font-size: 1em;
-    border-radius: 12px;
-    border: 2px solid #d63384;
-  }
+/* Page 2 & 3: Aesthetic backgrounds */
+#page2 { background: linear-gradient(to bottom, #ffe6f2, #fff0f5); color: #d63384; text-align: center; }
+#page3 { background: linear-gradient(to bottom, #ffccdd, #ffe6f2); color: #a83366; text-align: center; font-family: 'Pacifico', cursive; font-size: 1.5em; }
+#page4 { background: linear-gradient(to bottom, #ffd6e8, #ffe6f2); color: #a83366; text-align: center; font-family: 'Pacifico', cursive; font-size: 1.5em; }
 
-  /* Page 3: Romantic ending */
-  #page3 {
-    background: linear-gradient(to bottom, #ffccdd, #ffe6f2);
-    color: #a83366;
-    text-align: center;
-    font-size: 1.5em;
-    font-family: 'Pacifico', cursive;
-  }
-  .heart {
-    position: absolute;
-    font-size: 24px;
-    animation: floatUp 3s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes floatUp {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
-  }
+.heart {
+  position: absolute;
+  font-size: 24px;
+  animation: floatUp 3s linear infinite;
+  pointer-events: none;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+}
 </style>
 </head>
 <body>
@@ -117,72 +108,70 @@
   <div id="page1-content">
     Kaynat, my heart belongs to you 💖
     <br>
-    <button id="valentineBtn" class="valentine-btn">💖 Be My Valentine 💖</button>
+    <button id="valYes" class="valentine-btn">Yes 💖</button>
+    <button id="valNo" class="valentine-btn">No 😅</button>
   </div>
 </div>
 
-<!-- Page 2: Questions -->
+<!-- Page 2: 10 kids question -->
 <div id="page2" class="page">
-  <p>Choose what you want to eat 🍕🍰:</p>
+  <p>Kaynat, will you give me 10 kids as you promised? 😘</p>
+  <button onclick="goToPage(3)" class="question-btn">Yes 💕</button>
+</div>
+
+<!-- Page 3: Food & meeting place -->
+<div id="page3" class="page">
+  <p>Choose food 🍵:</p>
   <select id="food">
-    <option value="Pizza">Pizza</option>
-    <option value="Sushi">Sushi</option>
-    <option value="Ice Cream">Ice Cream</option>
-    <option value="Chocolate Cake">Chocolate Cake</option>
-  </select>
-
-  <p>Choose your drink 🍵:</p>
-  <select id="drink">
-    <option value="Water">Water</option>
     <option value="Matcha Latte">Matcha Latte</option>
-    <option value="Juice">Juice</option>
-    <option value="Coffee">Coffee</option>
+    <option value="JJ">JJ</option>
+    <option value="Will Decide">Will Decide</option>
   </select>
 
-  <p>Where do you want to go 🌸:</p>
+  <p>Where shall we meet? 🌸</p>
   <select id="place">
-    <option value="Park">Park</option>
-    <option value="Beach">Beach</option>
     <option value="Cafe">Cafe</option>
     <option value="Movie">Movie</option>
+    <option value="Anywhere">Anywhere you want</option>
   </select>
 
   <br>
-  <button onclick="goToPage(3); showLove();">See Our Perfect Date 💕</button>
+  <button onclick="goToPage(4); showLove();" class="question-btn">See Our Date 💕</button>
 </div>
 
-<!-- Page 3: Romantic ending -->
-<div id="page3" class="page">
+<!-- Page 4: Romantic ending -->
+<div id="page4" class="page">
   <div id="result"></div>
 </div>
 
 <script>
-// Page switching
 function goToPage(num) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page'+num).classList.add('active');
 }
 
-// Valentine button dodges 'No'
-const valBtn = document.getElementById('valentineBtn');
-valBtn.addEventListener('mouseenter', () => {
-  const x = Math.random() * 150 - 75;
-  const y = Math.random() * 100 - 50;
-  valBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
-valBtn.addEventListener('click', () => {
+// Valentine buttons
+const valYes = document.getElementById('valYes');
+const valNo = document.getElementById('valNo');
+
+valYes.addEventListener('click', () => {
   goToPage(2);
 });
 
-// Romantic ending with hearts
+valNo.addEventListener('mouseenter', () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 100 - 50;
+  valNo.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// Romantic ending
 function showLove() {
   const food = document.getElementById('food').value;
-  const drink = document.getElementById('drink').value;
   const place = document.getElementById('place').value;
   const messages = [
-    `Kaynat, my love, let's go to the <b>${place}</b> and enjoy <b>${food}</b> with <b>${drink}</b> 😘.`,
-    `Can't wait to see you, Kaynat! We'll sip <b>${drink}</b> and munch <b>${food}</b> at the <b>${place}</b> 💖.`,
-    `Oh Kaynat! <b>${food}</b> + <b>${drink}</b> + <b>${place}</b> = perfect date 😍.`
+    `Kaynat, I can't wait to spend time with you at <b>${place}</b> and enjoy <b>${food}</b> together 💖!`,
+    `Oh Kaynat! <b>${food}</b> at <b>${place}</b> with you will be the best 😘.`,
+    `My love, <b>${food}</b> and <b>${place}</b> with you = perfect day 💕.`
   ];
   const randomMsg = messages[Math.floor(Math.random() * messages.length)];
   document.getElementById('result').innerHTML = randomMsg;
@@ -190,14 +179,14 @@ function showLove() {
 }
 
 function createHearts(num) {
-  for (let i = 0; i < num; i++) {
+  for (let i=0;i<num;i++){
     const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerHTML = '💖';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    heart.className='heart';
+    heart.innerHTML='💖';
+    heart.style.left=Math.random()*window.innerWidth+'px';
+    heart.style.fontSize=(15+Math.random()*25)+'px';
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 3000);
+    setTimeout(()=>heart.remove(),3000);
   }
 }
 </script>
