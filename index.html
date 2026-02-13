@@ -1,149 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For Kaynat 💚</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #333;
-    }
+<meta charset="UTF-8">
+<title>For Kaynat 💚</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
 
-    .card {
-      background: #fff;
-      width: 90%;
-      max-width: 360px;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      text-align: center;
-      animation: pop 0.8s ease;
-    }
+  body {
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('her.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
 
-    @keyframes pop {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+  .overlay {
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
 
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #ff4d6d;
-      margin-bottom: 10px;
-    }
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 25px;
+    max-width: 400px;
+    width: 90%;
+    animation: pop 0.8s ease;
+  }
 
-    h1 {
-      color: #ff4d6d;
-      margin: 10px 0;
-    }
+  @keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
 
-    p {
-      font-size: 15px;
-      margin: 10px 0 15px;
-    }
+  h1 { font-size: 28px; margin-bottom: 15px; color:#ffccd5; }
+  h2 { font-size: 24px; margin: 15px 0; color:#ffedf0; }
+  p { font-size: 16px; margin-bottom: 20px; }
 
-    button {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 20px;
-      font-size: 14px;
-      margin: 6px;
-      cursor: pointer;
-      background: #ff4d6d;
-      color: white;
-      transition: 0.3s;
-    }
+  button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+  }
 
-    button:hover {
-      transform: scale(1.1);
-    }
+  .option { background: #ffccd5; color: #333; }
+  .yes-btn { background: #ff4d6d; color: white; }
+  .no-btn { background: #ffe5ec; color: #333; position: relative; }
 
-    .option {
-      background: #ffe5ec;
-      color: #333;
-    }
-  </style>
+  /* Hearts animation */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(-45deg);
+    animation: float 3s linear forwards;
+  }
+
+  .heart:before,
+  .heart:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .heart:before { top: -10px; left: 0; }
+  .heart:after { left: 10px; top: 0; }
+
+  @keyframes float {
+    0% { transform: translateY(0) rotate(-45deg); opacity:1; }
+    100% { transform: translateY(-400px) translateX(50px) rotate(-45deg); opacity:0; }
+  }
+</style>
 </head>
 <body>
 
-<div class="card" id="card">
-
-  <!-- STEP 1 -->
-  <img src="her.jpg" alt="Her cute pic">
-  <h1>Hey Kaynat 💖</h1>
-  <p>
-    You say you’re not special…  
-    but somehow my world feels lighter because of you.
-  </p>
-  <button onclick="food()">Next 😌</button>
-
+<div class="overlay">
+  <div class="card" id="card">
+    <h1>Hey Kaynat 💖</h1>
+    <p>Even when you say you’re not special… my heart knows you’re the spark that lights up everything around me.</p>
+    <button onclick="valentine()">Next 😌</button>
+  </div>
 </div>
 
 <script>
-  function food() {
-    document.getElementById("card").innerHTML = `
-      <h1>What are we eating? 🍕</h1>
-      <button class="option" onclick="drink()">Pizza 🍕</button>
-      <button class="option" onclick="drink()">Burgers 🍔</button>
-      <button class="option" onclick="drink()">Desi Khana 🍛</button>
-      <button class="option" onclick="drink()">Whatever you want 😏</button>
-    `;
-  }
+function valentine() {
+  const card = document.getElementById('card');
+  card.innerHTML = `
+    <h1>Will you be my Valentine? 💘</h1>
+    <button class="yes-btn" onclick="food()">Yes 😍</button>
+    <button class="no-btn" id="noBtn">No 😅</button>
+  `;
 
-  function drink() {
-    document.getElementById("card").innerHTML = `
-      <h1>What are you drinking? ☕</h1>
-      <button class="option" onclick="place()">Matcha 💚</button>
-      <button class="option" onclick="place()">Coffee ☕</button>
-      <button class="option" onclick="place()">Cold Drink 🧋</button>
-      <button class="option" onclick="place()">Whatever you’re holding 😅</button>
-    `;
-  }
+  const noBtn = document.getElementById('noBtn');
+  noBtn.addEventListener('mouseenter', () => {
+    const x = Math.random() * 120 - 60;
+    const y = Math.random() * 60 - 30;
+    noBtn.style.transform = \`translate(\${x}px, \${y}px)\`;
+  });
+}
 
-  function place() {
-    document.getElementById("card").innerHTML = `
-      <h1>Where are we going? ✈️</h1>
-      <button class="option" onclick="final()">Beach 🌊</button>
-      <button class="option" onclick="final()">Mountains ⛰️</button>
-      <button class="option" onclick="final()">Late Night Drive 🚗</button>
-      <button class="option" onclick="final()">Anywhere with you ❤️</button>
-    `;
-  }
+function food() {
+  const card = document.getElementById("card");
+  card.innerHTML = `
+    <h1>What are we eating? 🍕</h1>
+    <button class="option" onclick="drink()">Pizza 🍕</button>
+    <button class="option" onclick="drink()">Burgers 🍔</button>
+    <button class="option" onclick="drink()">Desi Khana 🍛</button>
+    <button class="option" onclick="drink()">Whatever you want 😏</button>
+  `;
+  card.style.animation = 'pop 0.8s ease';
+}
 
-  function final() {
-    document.getElementById("card").innerHTML = `
-      <h1>You chose perfectly 💘</h1>
-      <p>
-        As long as it’s you,  
-        the place doesn’t matter,  
-        the drink tastes sweeter,  
-        and life feels softer.
-      </p>
-      <h2>Will you be my Valentine? 💖</h2>
-      <button onclick="yes()">Yes 😍</button>
-    `;
-  }
+function drink() {
+  const card = document.getElementById("card");
+  card.innerHTML = `
+    <h1>What are you drinking? ☕</h1>
+    <button class="option" onclick="place()">Matcha 💚</button>
+    <button class="option" onclick="place()">Coffee ☕</button>
+    <button class="option" onclick="place()">Cold Drink 🧋</button>
+    <button class="option" onclick="place()">Whatever you’re holding 😅</button>
+  `;
+  card.style.animation = 'pop 0.8s ease';
+}
 
-  function yes() {
-    document.body.innerHTML = `
-      <div style="color:white; text-align:center;">
-        <h1 style="font-size:38px;">Best choice ever 💍</h1>
-        <p style="font-size:20px;">
-          Matcha dates, stolen smiles,  
-          and me choosing you — always.
-        </p>
-      </div>
-    `;
-  }
+function place() {
+  const card = document.getElementById("card");
+  card.innerHTML = `
+    <h1>Where are we going? ✈️</h1>
+    <button class="option" onclick="final()">Beach 🌊</button>
+    <button class="option" onclick="final()">Mountains ⛰️</button>
+    <button class="option" onclick="final()">Late Night Drive 🚗</button>
+    <button class="option" onclick="final()">Anywhere with you ❤️</button>
+  `;
+  card.style.animation = 'pop 0.8s ease';
+}
+
+function final() {
+  const card = document.getElementById("card");
+  card.innerHTML = `
+    <h1>You chose perfectly 💘</h1>
+    <p>As long as it’s you, every moment is magic, every sip tastes sweeter, and every place feels like home.</p>
+    <h2>Love you to the moon and back 🌙💖</h2>
+  `;
+  card.style.animation = 'pop 0.8s ease';
+
+  // Launch hearts animation
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 3000);
+  }, 200);
+}
 </script>
 
 </body>
