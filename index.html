@@ -1,79 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Kaynat 💖</title>
-  <style>
-    body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(to bottom, #ffe6f2, #fff0f5);
-      color: #d63384;
-      text-align: center;
-      padding: 20px;
-      overflow-x: hidden;
-    }
-    h1 {
-      font-size: 2.2em;
-      animation: pulse 2s infinite;
-    }
-    img {
-      width: 180px;
-      border-radius: 50%;
-      margin: 20px 0;
-      border: 4px solid #ff99cc;
-      box-shadow: 0 0 20px #ff99cc;
-    }
-    select, button {
-      padding: 12px;
-      margin: 10px;
-      border-radius: 15px;
-      border: 2px solid #d63384;
-      font-size: 1em;
-      transition: all 0.3s ease;
-    }
-    select:hover, button:hover {
-      transform: scale(1.05);
-    }
-    .result {
-      margin-top: 20px;
-      font-size: 1.3em;
-      color: #a83366;
-      min-height: 50px;
-    }
-    #valentineBtn {
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border-radius: 20px;
-      border: 2px solid #d63384;
-      background-color: #ffe6f2;
-      color: #d63384;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-    .heart {
-      position: absolute;
-      font-size: 24px;
-      animation: floatUp 3s linear infinite;
-      pointer-events: none;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Kaynat 💖</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    overflow-x: hidden;
+  }
+  .screen {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    color: #fff;
+    position: relative;
+  }
+  .screen.active {
+    display: block;
+  }
+  #screen1 {
+    background: url('her.JPG') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #screen1 h1 {
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 2em;
+    animation: pulse 2s infinite;
+  }
+  #screen2, #screen3, #screen4 {
+    background: linear-gradient(to bottom, #ffe6f2, #fff0f5);
+    padding-top: 50px;
+    color: #d63384;
+  }
+  button, select {
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 1em;
+    border-radius: 12px;
+    border: 2px solid #d63384;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  button:hover, select:hover {
+    transform: scale(1.05);
+  }
+  .heart {
+    position: absolute;
+    font-size: 24px;
+    animation: floatUp 3s linear infinite;
+    pointer-events: none;
+  }
 
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-  </style>
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+</style>
 </head>
 <body>
-  <h1>💖 Hello Kaynat 💖</h1>
-  <img src="her.JPG" alt="Kaynat">
 
+<!-- Screen 1: Romantic Intro -->
+<div id="screen1" class="screen active">
+  <h1>Kaynat, you make my world brighter 💖</h1>
+  <button onclick="nextScreen(2)">Continue</button>
+</div>
+
+<!-- Screen 2: Teasing Valentine -->
+<div id="screen2" class="screen">
+  <h1>Will you be my Valentine? 💌</h1>
+  <button id="valentineBtn">💖 Be My Valentine 💖</button>
+  <br>
+  <button onclick="nextScreen(3)">I give up 😅</button>
+</div>
+
+<!-- Screen 3: Questions -->
+<div id="screen3" class="screen">
   <p>Choose what you want to eat 🍕🍰:</p>
   <select id="food">
     <option value="Pizza">Pizza</option>
@@ -99,49 +113,56 @@
   </select>
 
   <br>
-  <button onclick="showLove()">See Your Perfect Date 💕</button>
+  <button onclick="nextScreen(4); showLove();">See Our Date 💕</button>
+</div>
 
+<!-- Screen 4: Romantic Ending -->
+<div id="screen4" class="screen">
   <div class="result" id="result"></div>
+</div>
 
-  <p>Will you be my Valentine? 💌</p>
-  <button id="valentineBtn">💖 Be My Valentine 💖</button>
+<script>
+  function nextScreen(num) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen'+num).classList.add('active');
+  }
 
-  <script>
-    function showLove() {
-      const food = document.getElementById('food').value;
-      const drink = document.getElementById('drink').value;
-      const place = document.getElementById('place').value;
+  function showLove() {
+    const food = document.getElementById('food').value;
+    const drink = document.getElementById('drink').value;
+    const place = document.getElementById('place').value;
 
-      const messages = [
-        `Kaynat, my love, let's go to the <b>${place}</b> and enjoy <b>${food}</b> with <b>${drink}</b> 😘.`,
-        `Can't wait to see you, Kaynat! We'll sip <b>${drink}</b> and munch <b>${food}</b> at the <b>${place}</b> 💖.`,
-        `Oh Kaynat! <b>${food}</b> + <b>${drink}</b> + <b>${place}</b> = perfect date 😍.`
-      ];
+    const messages = [
+      `Kaynat, my love, let's go to the <b>${place}</b> and enjoy <b>${food}</b> with <b>${drink}</b> 😘.`,
+      `Can't wait to see you, Kaynat! We'll sip <b>${drink}</b> and munch <b>${food}</b> at the <b>${place}</b> 💖.`,
+      `Oh Kaynat! <b>${food}</b> + <b>${drink}</b> + <b>${place}</b> = perfect date 😍.`
+    ];
 
-      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-      document.getElementById('result').innerHTML = randomMsg;
+    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+    document.getElementById('result').innerHTML = randomMsg;
+    createHearts(15);
+  }
 
-      createHearts(10);
+  function createHearts(num) {
+    for (let i = 0; i < num; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
     }
+  }
 
-    function createHearts(num) {
-      for (let i = 0; i < num; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerHTML = '💖';
-        heart.style.left = Math.random() * window.innerWidth + 'px';
-        heart.style.fontSize = (15 + Math.random() * 20) + 'px';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 3000);
-      }
-    }
+  // Valentine button dodges her
+  const btn = document.getElementById('valentineBtn');
+  btn.addEventListener('mouseenter', () => {
+    const x = Math.random() * 80;
+    const y = Math.random() * 80;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+</script>
 
-    const btn = document.getElementById('valentineBtn');
-    btn.addEventListener('mouseenter', () => {
-      const x = Math.random() * 80;
-      const y = Math.random() * 80;
-      btn.style.transform = `translate(${x}px, ${y}px)`;
-    });
-  </script>
 </body>
 </html>
